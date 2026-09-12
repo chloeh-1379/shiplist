@@ -1,5 +1,7 @@
 # 🚢 ShipList
 
+English | [简体中文](./README.zh-CN.md)
+
 A **local-first, offline** idea tracker for makers. Capture every idea, then track it
 through its lifecycle until it **ships** — as a GitHub repo, an app, a web service,
 a CLI, or something you sell.
