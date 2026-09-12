@@ -83,7 +83,7 @@ curl -s -X POST http://127.0.0.1:4520/api/ideas \
 
 ## Export
 
-- UI: header buttons `⬇︎ Markdown` / `⬇︎ JSON`
+- UI: open **Export** in the header, then choose **Markdown** or **JSON**
 - CLI: `curl http://127.0.0.1:4520/api/export.md > ideas.md`
 
 ## Keyboard shortcuts

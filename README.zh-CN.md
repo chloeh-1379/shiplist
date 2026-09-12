@@ -72,7 +72,7 @@ curl -s -X POST http://127.0.0.1:4520/api/ideas \
 
 ## 导出
 
-- UI：头部按钮 `⬇︎ Markdown` / `⬇︎ JSON`
+- UI：点击顶部 **Export** 菜单，选择 **Markdown** 或 **JSON**
 - CLI：`curl http://127.0.0.1:4520/api/export.md > ideas.md`
 
 ## 快捷键

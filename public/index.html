@@ -6,128 +6,110 @@
 <title>ShipList · Ideas that ship</title>
 <style>
   :root {
-    --bg: #f6f7f9;
-    --surface: #ffffff;
-    --surface-2: #f0f2f5;
-    --border: #e4e7ec;
-    --text: #1d2939;
-    --text-2: #667085;
-    --text-3: #98a2b3;
-    --accent: #4f6ef7;
-    --accent-soft: #eef1fe;
-    --green-soft: #e7f8f0;
-    --amber: #f79009;
-    --amber-soft: #fef4e5;
-    --violet: #7a5af8;
-    --violet-soft: #f1eeff;
-    --pink-soft: #fdeef9;
-    --gray-soft: #f2f4f7;
-    --radius: 14px;
-    --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 4px 16px rgba(16, 24, 40, .06);
-    --shadow-lg: 0 8px 32px rgba(16, 24, 40, .14);
+    color-scheme: light;
+    --bg: #f8f6f0; --surface: #fffefa; --surface-2: #efefe7;
+    --border: #deddd3; --text: #30362d; --text-2: #656b62; --text-3: #777b72;
+    --accent: #748361; --accent-soft: #e9eddf; --green-soft: #dfeadd;
+    --amber: #967239; --amber-soft: #fbefcd; --violet: #8e6557; --violet-soft: #f2dfd5;
+    --pink-soft: #eee4d9; --gray-soft: #eeece6;
+    --radius: 13px; --shadow: 0 3px 12px #3c442305; --shadow-lg: 0 14px 50px #3c442319;
+    --serif: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Noto Serif CJK SC', 'Songti SC', Georgia, serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Helvetica Neue", "Segoe UI", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ---------- header ---------- */
-  header {
-    position: sticky; top: 0; z-index: 20;
-    background: rgba(255,255,255,.82);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-  }
-  .header-inner {
-    max-width: 1120px; margin: 0 auto; padding: 14px 24px;
-    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-  }
-  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -.02em; }
-  .logo-badge {
-    width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
-    background: linear-gradient(135deg, #4f6ef7, #7a5af8); font-size: 17px;
-    box-shadow: 0 4px 10px rgba(79,110,247,.35);
-  }
-  .search {
-    flex: 1; min-width: 180px; max-width: 380px;
-    display: flex; align-items: center; gap: 8px;
-    background: var(--surface-2); border: 1px solid transparent; border-radius: 10px;
-    padding: 8px 12px; transition: .15s;
-  }
-  .search:focus-within { background: #fff; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
-  .search input { border: none; outline: none; background: none; width: 100%; font-size: 14px; color: var(--text); }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+  button, input, select, textarea { font-family: inherit; }
+  button { cursor: pointer; }
+  [hidden] { display: none !important; }
+  button:focus-visible, summary:focus-visible, a:focus-visible, [role="button"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .icon { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; vertical-align: middle; }
+  [data-icon] { display: inline-flex; }
+  header { position: sticky; top: 0; z-index: 20; background: #f8f6f0ed; backdrop-filter: blur(12px); }
+  .header-inner { max-width: 1360px; margin: auto; padding: 23px 40px; display: flex; align-items: center; gap: 22px; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); font: 36px var(--serif); letter-spacing: -1.3px; }
+  .logo .icon { width: 39px; height: 44px; stroke-width: 1.1; }
+  .header-tagline { padding-left: 22px; border-left: 1px solid #d6d5ca; color: var(--text-2); font-size: 13px; }
+  .header-actions { margin-left: auto; display: flex; gap: 10px; align-items: center; }
   .spacer { flex: 1; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    border: 1px solid var(--border); background: var(--surface); color: var(--text);
-    padding: 8px 14px; border-radius: 10px; font-size: 13.5px; font-weight: 550;
-    cursor: pointer; transition: .15s; white-space: nowrap;
-  }
-  .btn:hover { border-color: #cfd4dc; box-shadow: var(--shadow); transform: translateY(-1px); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn.primary:hover { background: #415ee0; box-shadow: 0 4px 14px rgba(79,110,247,.4); }
-  .btn.ghost { border-color: transparent; background: transparent; color: var(--text-2); }
-  .btn.ghost:hover { background: var(--surface-2); box-shadow: none; }
-  .btn.danger { color: #d92d20; }
-
-  /* ---------- main ---------- */
-  main { max-width: 1120px; margin: 0 auto; padding: 28px 24px 80px; }
-  .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
-  .stat {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 12px 18px; min-width: 120px; box-shadow: var(--shadow);
-  }
-  .stat .num { font-size: 24px; font-weight: 700; letter-spacing: -.02em; }
-  .stat .lbl { font-size: 12px; color: var(--text-2); margin-top: 2px; }
-  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
-  .chip {
-    border: 1px solid var(--border); background: var(--surface); color: var(--text-2);
-    border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 500; cursor: pointer; transition: .15s;
-  }
-  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); padding: 11px 17px; border-radius: 9px; font-size: 13px; font-weight: 500; cursor: pointer; transition: background .15s, border-color .15s, box-shadow .15s; white-space: nowrap; }
+  .btn:hover { background: #f0f0e6; border-color: #bfc5b3; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fffefa; }
+  .btn.primary:hover { background: #647450; border-color: #647450; box-shadow: 0 3px 10px #3e4a2714; }
+  .btn.ghost { border-color: transparent; background: transparent; }
+  .btn.ghost:hover { background: #eceee3; }
+  .btn.danger { color: #aa5345; }
+  .btn:disabled { opacity: .6; cursor: wait; }
+  .export-menu { position: relative; }
+  .export-menu summary { list-style: none; }
+  .export-menu summary::-webkit-details-marker { display: none; }
+  .export-options { position: absolute; right: 0; top: calc(100% + 8px); width: 196px; padding: 6px; border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow-lg); background: var(--surface); }
+  .export-options button { width: 100%; display: flex; justify-content: space-between; padding: 12px; border: 0; border-radius: 5px; color: var(--text); background: transparent; font-size: 13px; }
+  .export-options button:hover { background: var(--accent-soft); }
+  .export-options small { color: var(--text-3); }
+  main { max-width: 1360px; margin: auto; padding: 42px 40px 28px; }
+  .intro { position: relative; padding-right: 115px; }
+  .eyebrow { color: #657454; font-size: 10px; letter-spacing: .29em; font-weight: 500; }
+  .intro h1 { font: 400 clamp(30px, 4.1vw, 54px)/1.16 var(--serif); letter-spacing: -2px; margin: 19px 0 9px; }
+  .intro p { font-size: 17px; line-height: 1.6; color: var(--text-2); }
+  .intro-art { position: absolute; right: 7px; bottom: -11px; width: 108px; height: 119px; color: #637450; transform: rotate(-6deg); }
+  .intro-art .icon { width: 100%; height: 100%; stroke-width: .7; }
+  .stats { display: flex; gap: 19px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--text-2); margin-top: 26px; padding-bottom: 23px; border-bottom: 1px solid #d1d3c6; }
+  .stats .divider { color: #9a9f8d; font-size: 12px; }
+  .stats strong { font-weight: 500; }
+  .collection-toolbar { display: flex; align-items: flex-start; gap: 20px; margin: 24px 0 20px; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; min-width: 0; }
+  .chip { border: 1px solid var(--border); background: transparent; color: var(--text); border-radius: 9px; padding: 10px 16px; min-height: 40px; font-size: 12px; cursor: pointer; transition: background .15s, border-color .15s; white-space: nowrap; }
+  .chip:hover { border-color: #aeb79b; background: #efefe5; }
   .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-  /* ---------- cards ---------- */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-  .card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 18px; box-shadow: var(--shadow); cursor: pointer; transition: .18s;
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: #d3d8e0; }
-  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
-  .card h3 { font-size: 16px; font-weight: 650; letter-spacing: -.01em; line-height: 1.35; }
-  .card .summary { font-size: 13.5px; color: var(--text-2); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .card .meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: auto; }
-  .pill { font-size: 11.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
-  .pill.idea { background: var(--accent-soft); color: var(--accent); }
-  .pill.planned { background: var(--violet-soft); color: var(--violet); }
-  .pill.building { background: var(--amber-soft); color: #b54708; }
-  .pill.shipped { background: var(--green-soft); color: #067647; }
-  .pill.released { background: var(--pink-soft); color: #c11574; }
-  .pill.parked { background: var(--gray-soft); color: var(--text-2); }
-  .pill.stopped { background: #fef1f0; color: #b42318; }
-  .pill.sold { background: #fdf6e3; color: #93370d; }
-  .target { font-size: 11.5px; color: var(--text-3); font-weight: 550; }
-  .tag { font-size: 11.5px; background: var(--surface-2); color: var(--text-2); padding: 3px 9px; border-radius: 6px; }
-  .prio { color: var(--amber); font-size: 12px; letter-spacing: 1px; }
-  .card .foot { font-size: 11.5px; color: var(--text-3); display: flex; justify-content: space-between; }
-
-  .empty {
-    text-align: center; padding: 90px 20px; color: var(--text-2);
-    background: var(--surface); border: 1.5px dashed var(--border); border-radius: var(--radius);
-  }
-  .empty .big { font-size: 42px; margin-bottom: 12px; }
-
-  .agent-banner {
-    display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--text-2);
-    background: var(--accent-soft); border: 1px solid #d7ddfc; border-radius: 12px;
-    padding: 10px 16px; margin-bottom: 22px;
-  }
-  .agent-banner code { background: #fff; border: 1px solid #d7ddfc; padding: 2px 7px; border-radius: 6px; font-size: 11.5px; }
+  .chip .count { margin-left: 7px; opacity: .8; font-variant-numeric: tabular-nums; }
+  .search { width: 245px; display: flex; align-items: center; gap: 9px; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 10px 13px; min-height: 40px; }
+  .search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .search input { border: 0; outline: 0; background: none; min-width: 0; width: 100%; font-size: 12px; color: var(--text); }
+  .search input::placeholder { color: var(--text-3); }
+  .search .icon { width: 17px; height: 17px; }
+  .search kbd { font: inherit; font-size: 11px; color: #929787; }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .card { min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 25px 0; box-shadow: var(--shadow); cursor: pointer; transition: transform .18s, box-shadow .18s, border-color .18s; display: flex; flex-direction: column; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 7px 22px #3c44230c; border-color: #b8c2a5; }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+  .project-icon { width: 58px; height: 58px; border-radius: 51% 44% 49% 42%; background: #e9eddf; color: #637450; display: grid; place-items: center; }
+  .project-icon .icon { width: 37px; height: 37px; stroke-width: 1; }
+  .project-icon.app { background: #f2e4da; color: #977362; border-radius: 44% 51% 45% 50%; }
+  .project-icon.web { background: #e9ecdf; }
+  .project-icon.cli { background: #f9efcf; color: #958043; }
+  .project-icon.library { background: #f2e4d9; color: #967158; }
+  .card h3 { font: 400 25px/1.3 var(--serif); letter-spacing: -.65px; margin-bottom: 5px; overflow-wrap: anywhere; }
+  .card .summary { font-size: 14px; color: var(--text-2); line-height: 1.55; min-height: 44px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; margin-bottom: 12px; }
+  .card .summary.placeholder { font-style: italic; color: var(--text-3); }
+  .card .meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: auto; margin-bottom: 15px; min-height: 23px; }
+  .pill { font-size: 11px; font-weight: 450; padding: 6px 13px; border-radius: 999px; white-space: nowrap; }
+  .pill.idea { background: #eceee5; color: #55604c; }
+  .pill.planned { background: #efdad0; color: #7f594b; }
+  .pill.building { background: #faebc1; color: #7f622c; }
+  .pill.shipped { background: #d2e0ce; color: #425d3c; }
+  .pill.released { background: #dce9dd; color: #49684a; }
+  .pill.parked { background: #eae7e1; color: #666357; }
+  .pill.stopped { background: #f2dfd9; color: #944f44; }
+  .pill.sold { background: #eee5c5; color: #7f6c2e; }
+  .target { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; color: var(--text-2); }
+  .target .icon { width: 16px; height: 16px; }
+  .tag { font-size: 11px; background: #eeefe7; color: #62695b; padding: 4px 12px; border-radius: 999px; max-width: 100%; overflow-wrap: anywhere; }
+  .prio { color: var(--amber); font-size: 11px; letter-spacing: 1px; }
+  .card .prio { margin-left: auto; }
+  .card .foot { border-top: 1px solid #e5e5da; padding: 13px 0 16px; font-size: 10px; color: var(--text-3); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .card-new { background: transparent; border-style: dashed; box-shadow: none; align-items: center; justify-content: center; text-align: center; padding: 28px; min-height: 267px; color: var(--text); }
+  .card-new:hover { background: #f1f2e8; }
+  .card-new .new-icon { width: 39px; height: 39px; border: 1.5px solid #7d896a; border-radius: 50%; display: grid; place-items: center; color: #677753; margin-bottom: 17px; }
+  .card-new .new-icon .icon { width: 26px; height: 26px; stroke-width: 1.2; }
+  .card-new strong { font: 400 23px var(--serif); letter-spacing: -.5px; }
+  .card-new small { color: var(--text-2); font-size: 12px; margin-top: 8px; }
+  .empty { grid-column: 1/-1; text-align: center; padding: 62px 20px; color: var(--text-2); border: 1px dashed var(--border); border-radius: var(--radius); }
+  .empty .big { color: var(--accent); margin-bottom: 15px; }
+  .empty .big .icon { width: 57px; height: 57px; stroke-width: 1; }
+  .empty h2 { font: 400 29px var(--serif); color: var(--text); margin-bottom: 10px; }
+  .empty p { font-size: 14px; line-height: 1.6; margin-bottom: 22px; }
+  .page-footer { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 30px; color: var(--text-3); font-size: 12px; }
+  .page-footer::before, .page-footer::after { content: ''; height: 1px; width: 42px; background: var(--border); }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 
   /* ---------- full-window detail modal ---------- */
   .overlay {
@@ -263,51 +245,121 @@
   }
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  @media (max-width: 640px) {
-    .grid { grid-template-columns: 1fr; }
-    .stats { gap: 8px; } .stat { min-width: 100px; padding: 10px 14px; }
-    .modal-body { padding: 24px 18px 70px; }
-    .v-title { font-size: 24px; }
-    .log-entry time { flex-basis: 110px; }
+  /* Detail and editor share the same paper-and-ink palette. */
+  .modal-head { background: #f8f6f0ed; }
+  .modal-body { padding-top: 42px; }
+  .v-title { font: 400 42px/1.2 var(--serif); letter-spacing: -1px; overflow-wrap: anywhere; }
+  .v-summary { border-left: 2px solid #b8c3a7; padding-left: 20px; }
+  .md { overflow-wrap: anywhere; }
+  .md pre { background: #f1f0e8; }
+  .md a { border-bottom-color: #bdc6ad; }
+  .v-link { color: #60714e; }
+  .log-entry > div { min-width: 0; overflow-wrap: anywhere; }
+  .log-add input, .link-row input { min-width: 0; color: var(--text); }
+  .icon-btn { flex: 0 0 38px; }
+  .edit-intro { margin-bottom: 30px; }
+  .edit-intro h2 { font: 400 36px var(--serif); letter-spacing: -.8px; margin: 15px 0 8px; }
+  .edit-intro p { color: var(--text-2); font-size: 14px; }
+  .field label { font-weight: 500; }
+  .field input.title-input { font: 400 26px var(--serif); }
+  .edit-actions { position: sticky; bottom: 0; background: var(--bg); padding-bottom: 16px; }
+  .settings-dialog { max-height: calc(100dvh - 32px); overflow-y: auto; }
+  #settingsTitle { font: 400 27px var(--serif); margin-bottom: 23px; }
+  #settingsOverlay { z-index: 55; }
+  #toast { background: #3f4b35; max-width: calc(100vw - 32px); }
+  @media (max-width: 1100px) {
+    .header-inner { padding: 20px 28px; }
+    main { padding: 35px 28px 28px; }
+    .intro h1 { font-size: 40px; letter-spacing: -1.4px; }
+    .intro p { font-size: 15px; }
+    .collection-toolbar { flex-wrap: wrap; }
+    .search { width: 220px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .header-tagline { font-size: 12px; }
+  }
+  @media (max-width: 680px) {
+    .header-inner { padding: 15px 18px; gap: 10px; }
+    .header-tagline, .action-label { display: none; }
+    .header-actions { gap: 2px; }
+    .header-actions .btn { padding: 9px 10px; font-size: 12px; }
+    .logo { font-size: 28px; gap: 7px; }
+    .logo .icon { width: 28px; height: 33px; }
+    main { padding: 29px 18px 25px; }
+    .intro { padding-right: 0; }
+    .intro h1 { font-size: 38px; letter-spacing: -1.4px; max-width: 450px; margin: 17px 0 13px; }
+    .intro p { font-size: 14px; padding-right: 35px; }
+    .intro-art { display: none; }
+    .eyebrow { font-size: 9px; letter-spacing: .22em; }
+    .stats { gap: 10px; font-size: 11px; margin-top: 22px; padding-bottom: 21px; }
+    .collection-toolbar { gap: 12px; margin-top: 20px; }
+    .filters { flex: 1 1 100%; gap: 7px; }
+    .chip { padding: 9px 12px; font-size: 11px; min-height: 37px; }
+    .search { width: 100%; }
+    .grid { grid-template-columns: 1fr; gap: 14px; }
+    .card { padding: 21px 23px 0; }
+    .card-new { min-height: 205px; padding: 25px; }
+    .modal-head-inner { padding: 12px 14px; gap: 6px; }
+    .modal-head-inner .crumb { font-size: 11px; }
+    .modal-head-inner .btn { padding: 9px; font-size: 12px; }
+    .modal-body { padding: 28px 20px 45px; }
+    .v-title { font-size: 33px; }
+    .v-dates { line-height: 1.8; }
+    .log-entry { flex-direction: column; gap: 4px; }
+    .log-entry time { flex-basis: auto; }
+    .link-row { flex-wrap: wrap; }
+    .link-row input { flex-basis: calc(50% - 30px); width: 0; }
+    .edit-intro h2 { font-size: 31px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+    .card:hover { transform: none; }
   }
 </style>
 </head>
 <body>
 
+<div id="workspace">
 <header>
   <div class="header-inner">
-    <div class="logo"><span class="logo-badge">🚢</span> ShipList</div>
-    <div class="search">
-      <span>🔍</span>
-      <input id="q" placeholder="Search ideas… ( / )" />
+    <a class="logo" href="/" aria-label="ShipList home"><span data-icon="sail"></span>ShipList</a>
+    <span class="header-tagline">A space for your next idea</span>
+    <div class="header-actions">
+      <details class="export-menu" id="exportMenu">
+        <summary class="btn ghost"><span data-icon="download"></span><span class="action-label">Export</span></summary>
+        <div class="export-options"><button id="btnExportMd">Markdown <small>.md</small></button><button id="btnExportJson">JSON <small>.json</small></button></div>
+      </details>
+      <button class="btn ghost" id="btnSettings" aria-label="Settings"><span data-icon="settings"></span><span class="action-label">Settings</span></button>
+      <button class="btn primary" id="btnNew"><span data-icon="plus"></span>New idea</button>
     </div>
-    <div class="spacer"></div>
-    <button class="btn" id="btnExportMd" title="Export Markdown digest (agent-friendly)">⬇︎ Markdown</button>
-    <button class="btn" id="btnExportJson" title="Export full JSON">⬇︎ JSON</button>
-    <button class="btn" id="btnSettings" title="Settings">⚙️</button>
-    <button class="btn primary" id="btnNew">＋ New Idea</button>
   </div>
 </header>
-
 <main>
-  <div class="agent-banner">
-    🤖 <span>Agent API: <code>GET /api/ideas</code> · <code>POST /api/ideas</code> · see <code>AGENTS.md</code> and <code>/api/export.md</code></span>
+  <section class="intro" aria-labelledby="pageTitle">
+    <div class="eyebrow">YOUR CREATIVE WORKSPACE</div>
+    <h1 id="pageTitle">Good things start with a small idea.</h1>
+    <p>Collect your sparks. Make a little progress. Put something into the world.</p>
+    <span class="intro-art" data-icon="sprout" aria-hidden="true"></span>
+  </section>
+  <div class="stats" id="stats" aria-label="Workspace overview"></div>
+  <div class="collection-toolbar">
+    <nav class="filters" id="filters" aria-label="Filter ideas by status"></nav>
+    <div class="search"><span data-icon="search"></span><input id="q" type="search" aria-label="Search ideas" placeholder="Search ideas…" autocomplete="off" /><kbd aria-hidden="true">/</kbd></div>
   </div>
-
-  <div class="stats" id="stats"></div>
-  <div class="filters" id="filters"></div>
-  <div class="grid" id="grid"></div>
+  <div id="resultCount" class="sr-only" role="status" aria-live="polite"></div>
+  <div class="grid" id="grid" aria-busy="true"><div class="empty"><p>Making room for your ideas…</p></div></div>
+  <footer class="page-footer">A little progress is still progress.</footer>
 </main>
+</div>
 
 <!-- full-window detail -->
 <div class="overlay" id="overlay"></div>
-<div class="modal" id="modal">
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="crumb" inert>
   <div class="modal-head">
     <div class="modal-head-inner">
-      <button class="btn ghost" id="btnClose">← Back</button>
+      <button class="btn ghost" id="btnClose">← Back to ideas</button>
       <span class="crumb" id="crumb">Idea</span>
       <div class="spacer"></div>
-      <button class="btn" id="btnEditToggle">✏️ Edit</button>
+      <button class="btn" id="btnEditToggle">Edit idea</button>
     </div>
   </div>
   <div class="modal-scroll">
@@ -334,7 +386,7 @@
           <div class="v-section-label">Activity Log</div>
           <div class="log-list" id="vLog"></div>
           <div class="log-add">
-            <input id="fLogText" placeholder="Log an update…" />
+            <input aria-label="Activity update" id="fLogText" placeholder="Log an update…" />
             <button class="btn" id="btnAddLog">Log</button>
           </div>
         </div>
@@ -342,31 +394,32 @@
 
       <!-- edit mode -->
       <div id="editMode" style="display:none">
+        <div class="edit-intro"><div class="eyebrow">A LITTLE ROOM TO GROW</div><h2 id="editTitle">A little idea, perhaps?</h2><p>Start with a name. It does not have to be fully formed.</p></div>
         <div class="edit-form">
           <div class="field">
-            <label>Title *</label>
+            <label for="fTitle">Title *</label>
             <input id="fTitle" class="title-input" placeholder="One line that captures the idea" />
           </div>
           <div class="field">
-            <label>Summary</label>
+            <label for="fSummary">Summary</label>
             <textarea id="fSummary" placeholder="What problem does it solve? Who is it for?"></textarea>
           </div>
           <div class="row">
             <div class="field">
-              <label>Status</label>
+              <label for="fStatus">Status</label>
               <select id="fStatus">
-                <option value="idea">💡 Idea</option>
-                <option value="planned">🗓️ Planned</option>
-                <option value="building">🚧 Building</option>
-                <option value="shipped">🚢 Shipped</option>
-                <option value="released">🎉 Released</option>
-                <option value="parked">🅿️ Parked</option>
-                <option value="stopped">🛑 Stopped</option>
-                <option value="sold">🤑 Sold</option>
+                <option value="idea">Idea</option>
+                <option value="planned">Planned</option>
+                <option value="building">Building</option>
+                <option value="shipped">Shipped</option>
+                <option value="released">Released</option>
+                <option value="parked">Parked</option>
+                <option value="stopped">Stopped</option>
+                <option value="sold">Sold</option>
               </select>
             </div>
             <div class="field">
-              <label>Ship to</label>
+              <label for="fTarget">Ship to</label>
               <select id="fTarget">
                 <option value="github">GitHub</option>
                 <option value="app">App (mobile/desktop)</option>
@@ -377,16 +430,16 @@
               </select>
             </div>
             <div class="field">
-              <label>Priority (0–5)</label>
+              <label for="fPriority">Priority (0–5)</label>
               <input id="fPriority" type="number" min="0" max="5" value="0" />
             </div>
           </div>
           <div class="field">
-            <label>Tags (comma-separated)</label>
+            <label for="fTags">Tags (comma-separated)</label>
             <input id="fTags" placeholder="ai, ios, tool" />
           </div>
           <div class="field">
-            <label>Description (Markdown)</label>
+            <label for="fDesc">Description (Markdown)</label>
             <textarea id="fDesc" class="desc" placeholder="## Context&#10;&#10;## MVP scope&#10;&#10;## Tech stack&#10;&#10;## Next steps"></textarea>
             <div class="hint">Markdown supported: # headings, **bold**, `code`, - lists, &gt; quotes, [links](url), ``` code blocks</div>
           </div>
@@ -410,10 +463,10 @@
 
 <!-- settings dialog -->
 <div class="overlay" id="settingsOverlay"></div>
-<div class="settings-dialog" id="settingsDialog">
-  <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">⚙️ Settings</h3>
+<div class="settings-dialog" id="settingsDialog" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" inert>
+  <h3 id="settingsTitle">Workspace settings</h3>
   <div class="field">
-    <label>Workspace (where your ideas live)</label>
+    <label for="fDataDir">Workspace (where your ideas live)</label>
     <input id="fDataDir" placeholder="~/ShipList" />
     <div class="hint">
       Ideas are stored as <code>ideas.json</code> in this folder, fully separate from the
@@ -430,20 +483,20 @@
   </div>
 </div>
 
-<div id="toast"></div>
+<div id="toast" role="status" aria-live="polite"></div>
 
 <script>
 const STATUS_META = {
-  idea:     { label: '💡 Idea',     cls: 'idea' },
-  planned:  { label: '🗓️ Planned',  cls: 'planned' },
-  building: { label: '🚧 Building', cls: 'building' },
-  shipped:  { label: '🚢 Shipped',  cls: 'shipped' },
-  released: { label: '🎉 Released', cls: 'released' },
-  parked:   { label: '🅿️ Parked',   cls: 'parked' },
-  stopped:  { label: '🛑 Stopped',  cls: 'stopped' },
-  sold:     { label: '🤑 Sold',     cls: 'sold' },
+  idea:     { label: 'Idea',     cls: 'idea' },
+  planned:  { label: 'Planned',  cls: 'planned' },
+  building: { label: 'Building', cls: 'building' },
+  shipped:  { label: 'Shipped',  cls: 'shipped' },
+  released: { label: 'Released', cls: 'released' },
+  parked:   { label: 'Parked',   cls: 'parked' },
+  stopped:  { label: 'Stopped',  cls: 'stopped' },
+  sold:     { label: 'Sold',     cls: 'sold' },
 };
-const TARGET_LABEL = { github: '⌥ GitHub', app: '📱 App', web: '🌐 Web', cli: '⌨️ CLI', library: '📦 Lib', other: '✦ Other' };
+const TARGET_LABEL = { github: 'GitHub', app: 'App', web: 'Web', cli: 'CLI', library: 'Lib', other: 'Other' };
 
 let ideas = [];
 let activeFilter = 'all';
@@ -451,6 +504,33 @@ let currentId = null;   // idea open in modal
 let mode = 'view';      // 'view' | 'edit'
 
 const $ = (s) => document.querySelector(s);
+
+const ICON_PATHS = {
+  sail: '<path d="M26 3v35M24 8 7 34h17M28 10l12 24H28M4 38h40l-6 5H11zM8 46h31"/>',
+  sprout: '<path d="M23 43V25C22 16 16 11 6 11c0 10 6 15 16 15M23 33C25 17 33 8 43 4c0 13-7 21-18 22M11 15l11 9M26 23 38 9M9 44c9-3 20-3 30 0M15 46h20"/><path d="M24 24c7-6 11-10 16-16M18 43l-4 2M27 43l5 2" opacity=".4"/>',
+  book: '<path d="M24 12C18 7 9 6 4 8v30c8-3 14-1 20 4 6-5 12-7 20-4V8c-7-2-14 0-20 4v30"/>',
+  mountain: '<circle cx="34" cy="10" r="5"/><path d="m3 40 13-24 14 24H3m20-13 5-8 17 21H30M12 24l4 5 4-5"/>',
+  plant: '<path d="M12 29h24l-3 15H15zM10 25h28v4H10zM24 25V12M23 20C13 21 9 16 10 9c8-1 13 3 13 11M24 13C23 5 29 2 35 3c0 6-4 10-11 10"/>',
+  sun: '<circle cx="24" cy="24" r="10"/><path d="M24 2v6m0 32v6M2 24h6m32 0h6M8 8l5 5m22 22 5 5M8 40l5-5M35 13l5-5"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  search: '<circle cx="10.5" cy="10.5" r="7"/><path d="m16 16 5 5"/>',
+  download: '<path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/>',
+  settings: '<path d="m10 3-1 3-3 1-2 2 1 3-1 3 2 2 3 1 1 3h4l1-3 3-1 2-2-1-3 1-3-2-2-3-1-1-3z"/><circle cx="12" cy="12" r="3"/>',
+  github: '<path d="M9 19c-5 1-5-3-7-3m14 5v-4a3.5 3.5 0 0 0-1-2.7c3-.3 6-1.5 6-6a4.7 4.7 0 0 0-1.3-3.2A4.5 4.5 0 0 0 19.6 2S18.4 1.6 16 3a11 11 0 0 0-6 0C7.6 1.6 6.4 2 6.4 2a4.5 4.5 0 0 0-.1 3.1A4.7 4.7 0 0 0 5 8.3c0 4.5 3 5.7 6 6A3.5 3.5 0 0 0 10 17v4"/>',
+  app: '<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',
+  web: '<rect x="3" y="4" width="18" height="13" rx="1"/><path d="M1 21h22M9 17v4m6-4v4"/>',
+  cli: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m6 9 3 3-3 3m6 0h5"/>',
+  library: '<path d="m3 7 9-5 9 5v10l-9 5-9-5zM3 7l9 5 9-5M12 12v10M7 4.8l9 5"/>',
+  other: '<path d="m12 3 3 6 6 3-6 3-3 6-3-6-6-3 6-3z"/>',
+};
+function icon(name) {
+  const large = ['sail', 'sprout', 'book', 'mountain', 'plant', 'sun'].includes(name);
+  return `<svg class="icon" viewBox="0 0 ${large ? 48 : 24} ${large ? 48 : 24}" aria-hidden="true">${ICON_PATHS[name] || ICON_PATHS.other}</svg>`;
+}
+document.querySelectorAll('[data-icon]').forEach((el) => { el.innerHTML = icon(el.dataset.icon); });
+const PROJECT_ICONS = { github: 'sprout', app: 'plant', web: 'mountain', cli: 'sun', library: 'book', other: 'sprout' };
+let returnFocus = null;
+let settingsReturnFocus = null;
 
 /* ---------- api ---------- */
 async function api(path, opts = {}) {
@@ -585,57 +665,67 @@ async function load() {
 
 function render() {
   const counts = {};
-  for (const i of ideas) counts[i.status] = (counts[i.status] || 0) + 1;
-  $('#stats').innerHTML =
-    `<div class="stat"><div class="num">${ideas.length}</div><div class="lbl">All Ideas</div></div>` +
-    ['building', 'shipped', 'released'].map((s) =>
-      `<div class="stat"><div class="num">${counts[s] || 0}</div><div class="lbl">${STATUS_META[s].label}</div></div>`
-    ).join('');
+  for (const idea of ideas) counts[idea.status] = (counts[idea.status] || 0) + 1;
+  const inMaking = (counts.planned || 0) + (counts.building || 0);
+  const inWorld = (counts.shipped || 0) + (counts.released || 0) + (counts.sold || 0);
+  $('#stats').innerHTML = `<span><strong>${ideas.length}</strong> ${ideas.length === 1 ? 'idea' : 'ideas'}</span><span class="divider" aria-hidden="true">/</span><span><strong>${inMaking}</strong> in the making</span><span class="divider" aria-hidden="true">/</span><span><strong>${inWorld}</strong> out in the world</span>`;
 
+  // Always show the main lifecycle; reveal other stages when they contain ideas.
+  const visibleStatuses = Object.entries(STATUS_META).filter(([key]) =>
+    ['idea', 'planned', 'building', 'shipped'].includes(key) || counts[key] || activeFilter === key);
   $('#filters').innerHTML =
-    `<button class="chip ${activeFilter === 'all' ? 'active' : ''}" data-f="all">All</button>` +
-    Object.entries(STATUS_META).map(([k, m]) =>
-      `<button class="chip ${activeFilter === k ? 'active' : ''}" data-f="${k}">${m.label}${counts[k] ? ` · ${counts[k]}` : ''}</button>`
-    ).join('');
-  document.querySelectorAll('.chip').forEach((c) =>
-    c.addEventListener('click', () => { activeFilter = c.dataset.f; render(); })
-  );
+    `<button class="chip ${activeFilter === 'all' ? 'active' : ''}" aria-pressed="${activeFilter === 'all'}" data-f="all">All ideas<span class="count">${ideas.length}</span></button>` +
+    visibleStatuses.map(([key, meta]) => `<button class="chip ${activeFilter === key ? 'active' : ''}" aria-pressed="${activeFilter === key}" data-f="${key}">${key === 'idea' ? 'Ideas' : meta.label}<span class="count">${counts[key] || 0}</span></button>`).join('');
+  $('#filters').querySelectorAll('.chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      activeFilter = chip.dataset.f;
+      render();
+      $(`#filters [data-f="${activeFilter}"]`).focus({ preventScroll: true });
+    });
+  });
 
   const q = $('#q').value.trim().toLowerCase();
-  let list = ideas.filter((i) => activeFilter === 'all' || i.status === activeFilter);
-  if (q) list = list.filter((i) => [i.title, i.summary, i.description, ...(i.tags || [])].join('\n').toLowerCase().includes(q));
+  let list = ideas.filter((idea) => activeFilter === 'all' || idea.status === activeFilter);
+  if (q) list = list.filter((idea) => [idea.title, idea.summary, idea.description, ...(idea.tags || [])].join('\n').toLowerCase().includes(q));
+  $('#resultCount').textContent = `${list.length} ${list.length === 1 ? 'idea' : 'ideas'} shown`;
+  $('#grid').setAttribute('aria-busy', 'false');
 
   if (!list.length) {
-    $('#grid').innerHTML = `<div class="empty" style="grid-column:1/-1">
-      <div class="big">🌱</div>
-      <div>${ideas.length ? 'No ideas match this filter' : 'No ideas yet — hit "＋ New Idea" to plant your first one'}</div>
-    </div>`;
+    const filtered = ideas.length || q || activeFilter !== 'all';
+    $('#grid').innerHTML = `<div class="empty"><div class="big">${icon(filtered ? 'search' : 'sprout')}</div><h2>${filtered ? 'A little space to look again.' : 'What would you love to make?'}</h2><p>${filtered ? 'No ideas match this view. Try another search or start fresh.' : 'A name, a question, a possibility. Your first idea can start small.'}</p><button class="btn primary" id="btnEmpty">${filtered ? 'Clear filters' : '+ Plant your first idea'}</button></div>`;
+    $('#btnEmpty').addEventListener('click', () => {
+      if (filtered) { activeFilter = 'all'; $('#q').value = ''; render(); $('#q').focus(); }
+      else openModal(null, 'edit');
+    });
     return;
   }
 
-  $('#grid').innerHTML = list.map((i) => {
-    const m = STATUS_META[i.status] || STATUS_META.idea;
-    return `<div class="card" data-id="${i.id}">
-      <div class="card-top">
-        <h3>${esc(i.title)}</h3>
-        <span class="prio">${i.priority ? '★'.repeat(i.priority) : ''}</span>
-      </div>
-      ${i.summary ? `<div class="summary">${esc(i.summary)}</div>` : ''}
-      <div class="meta">
-        <span class="pill ${m.cls}">${m.label}</span>
-        <span class="target">${TARGET_LABEL[i.shipTarget] || ''}</span>
-        ${(i.tags || []).map((t) => `<span class="tag">#${esc(t)}</span>`).join('')}
-      </div>
-      <div class="foot">
-        <span>${(i.log || []).length} logs · ${(i.links || []).length} links</span>
-        <span>${fmtDate(i.updatedAt)}</span>
-      </div>
-    </div>`;
-  }).join('');
+  $('#grid').innerHTML = list.map((idea) => {
+    const meta = STATUS_META[idea.status] || STATUS_META.idea;
+    const target = Object.hasOwn(PROJECT_ICONS, idea.shipTarget) ? idea.shipTarget : 'other';
+    const tags = idea.tags || [];
+    const priority = Math.max(0, Math.min(5, Number(idea.priority) || 0));
+    return `<article class="card" role="button" tabindex="0" data-id="${esc(idea.id)}" aria-label="Open ${esc(idea.title)}">
+      <div class="card-top"><span class="project-icon ${target}">${icon(PROJECT_ICONS[target])}</span><span class="pill ${meta.cls}">${meta.label}</span></div>
+      <h3>${esc(idea.title)}</h3>
+      <div class="summary ${idea.summary ? '' : 'placeholder'}">${esc(idea.summary || 'A small beginning. Room for something good.')}</div>
+      <div class="meta">${tags.slice(0, 3).map((tag) => `<span class="tag">${esc(tag)}</span>`).join('')}${tags.length > 3 ? `<span class="tag" title="${esc(tags.slice(3).join(', '))}">+${tags.length - 3}</span>` : ''}${priority ? `<span class="prio" aria-label="Priority ${priority} of 5" title="Priority ${priority} of 5">${'★'.repeat(priority)}</span>` : ''}</div>
+      <div class="foot"><span class="target">${icon(target)}${TARGET_LABEL[target]}</span><time datetime="${esc(idea.updatedAt || '')}" title="${esc(fmtDate(idea.updatedAt))}">Updated ${esc(shortDate(idea.updatedAt))}</time></div>
+    </article>`;
+  }).join('') + `<button class="card card-new" id="btnNewCard"><span class="new-icon">${icon('plus')}</span><strong>A little idea, perhaps?</strong><small>It does not have to be fully formed.</small></button>`;
+  $('#grid').querySelectorAll('[data-id]').forEach((card) => {
+    card.addEventListener('click', () => openModal(card.dataset.id, 'view'));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card.dataset.id, 'view'); }
+    });
+  });
+  $('#btnNewCard').addEventListener('click', () => openModal(null, 'edit'));
+}
 
-  document.querySelectorAll('.card').forEach((c) =>
-    c.addEventListener('click', () => openModal(c.dataset.id, 'view'))
-  );
+function shortDate(iso) {
+  if (!iso || Number.isNaN(new Date(iso).getTime())) return '—';
+  const date = new Date(iso);
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', ...(date.getFullYear() !== new Date().getFullYear() ? { year: 'numeric' } : {}) });
 }
 
 /* ---------- modal: view / edit ---------- */
@@ -646,7 +736,9 @@ function setMode(next) {
   $('#editMode').style.display = next === 'edit' ? '' : 'none';
   $('#btnEditToggle').style.display = next === 'view' ? '' : 'none';
   $('#crumb').textContent = next === 'edit' ? (currentId ? 'Edit Idea' : 'New Idea') : 'Idea';
-  if (next === 'edit') setTimeout(() => $('#fTitle').focus(), 200);
+  $('#editTitle').textContent = currentId ? 'A little room to grow.' : 'A little idea, perhaps?';
+  if (next === 'edit') $('#fTitle').focus();
+  else $('#btnEditToggle').focus();
 }
 
 function renderView(idea) {
@@ -659,14 +751,14 @@ function renderView(idea) {
     (idea.tags || []).map((t) => `<span class="tag">#${esc(t)}</span>`).join('');
   $('#vDates').textContent =
     `Created ${fmtDate(idea.createdAt)} · Updated ${fmtDate(idea.updatedAt)}` +
-    (idea.shippedAt ? ` · 🚢 ${fmtDate(idea.shippedAt)}` : '');
+    (idea.shippedAt ? ` · ${fmtDate(idea.shippedAt)}` : '');
   $('#vSummary').textContent = idea.summary || '';
   $('#vSummary').style.display = idea.summary ? '' : 'none';
 
   $('#vDescWrap').style.display = '';
   $('#vDesc').innerHTML = idea.description && idea.description.trim()
     ? renderMarkdown(idea.description)
-    : '<div class="md-placeholder">No description yet — hit "✏️ Edit" to add one</div>';
+    : '<div class="md-placeholder">No description yet — hit "Edit idea" to add one</div>';
 
   const links = idea.links || [];
   $('#vLinksWrap').style.display = links.length ? '' : 'none';
@@ -688,8 +780,8 @@ function renderView(idea) {
 function linkRow(l = { label: '', url: '' }) {
   const row = document.createElement('div');
   row.className = 'link-row';
-  row.innerHTML = `<input placeholder="label" value="${esc(l.label)}">
-                   <input placeholder="https://…" value="${esc(l.url)}">
+  row.innerHTML = `<input aria-label="Link label" placeholder="label" value="${esc(l.label)}">
+                   <input aria-label="Link URL" placeholder="https://…" value="${esc(l.url)}">
                    <button class="icon-btn" title="Remove">✕</button>`;
   row.querySelector('.icon-btn').addEventListener('click', () => row.remove());
   $('#linksList').appendChild(row);
@@ -709,7 +801,11 @@ function fillEditForm(idea) {
 }
 
 function openModal(id, nextMode = 'view') {
+  returnFocus = document.activeElement;
+  $('#exportMenu').open = false;
   currentId = id || null;
+  $('#workspace').inert = true;
+  $('#modal').inert = false;
   document.body.style.overflow = 'hidden';
   $('#overlay').classList.add('open');
   $('#modal').classList.add('open');
@@ -730,9 +826,13 @@ function closeModal() {
   document.body.style.overflow = '';
   currentId = null;
   mode = 'view';
+  $('#modal').inert = true;
+  $('#workspace').inert = false;
+  (returnFocus?.isConnected ? returnFocus : $('#btnNew')).focus({ preventScroll: true });
 }
 
 async function save() {
+  if ($('#btnSave').disabled) return;
   const links = [...document.querySelectorAll('.link-row')].map((r) => {
     const [a, b] = r.querySelectorAll('input');
     return { label: a.value.trim(), url: b.value.trim() };
@@ -750,20 +850,23 @@ async function save() {
   };
   if (!body.title) { toast('Title is required'); $('#fTitle').focus(); return; }
 
-  let saved;
-  if (currentId) {
-    saved = await api(`/api/ideas/${currentId}`, { method: 'PATCH', body: JSON.stringify(body) });
-    toast('Saved ✓');
-  } else {
-    saved = await api('/api/ideas', { method: 'POST', body: JSON.stringify(body) });
-    toast('Idea created 🌱');
-  }
-  ideas = ideas.filter((i) => i.id !== saved.id);
-  ideas.unshift(saved);
-  currentId = saved.id;
-  render();
-  renderView(saved);
-  setMode('view');
+  $('#btnSave').disabled = true;
+  try {
+    let saved;
+    if (currentId) {
+      saved = await api(`/api/ideas/${currentId}`, { method: 'PATCH', body: JSON.stringify(body) });
+      toast('Saved ✓');
+    } else {
+      saved = await api('/api/ideas', { method: 'POST', body: JSON.stringify(body) });
+      toast('Idea created 🌱');
+    }
+    ideas = ideas.filter((i) => i.id !== saved.id);
+    ideas.unshift(saved);
+    currentId = saved.id;
+    render();
+    renderView(saved);
+    setMode('view');
+  } finally { $('#btnSave').disabled = false; }
 }
 
 /* ---------- events ---------- */
@@ -811,12 +914,22 @@ async function openSettings() {
     $('#fDataDir').value = cfg.dataDir;
     $('#curDataFile').textContent = cfg.dataFile;
   } catch { /* keep stale values */ }
+  settingsReturnFocus = document.activeElement;
+  $('#exportMenu').open = false;
+  $('#workspace').inert = true;
+  $('#settingsDialog').inert = false;
+  document.body.style.overflow = 'hidden';
   $('#settingsOverlay').classList.add('open');
   $('#settingsDialog').classList.add('open');
+  $('#fDataDir').focus();
 }
 function closeSettings() {
   $('#settingsOverlay').classList.remove('open');
   $('#settingsDialog').classList.remove('open');
+  $('#settingsDialog').inert = true;
+  $('#workspace').inert = false;
+  document.body.style.overflow = '';
+  (settingsReturnFocus?.isConnected ? settingsReturnFocus : $('#btnSettings')).focus();
 }
 $('#btnSettings').addEventListener('click', openSettings);
 $('#btnSettingsCancel').addEventListener('click', closeSettings);
@@ -838,20 +951,40 @@ $('#btnSettingsSave').addEventListener('click', async () => {
 document.addEventListener('keydown', (e) => {
   const modalOpen = $('#modal').classList.contains('open');
   const typing = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName);
-  if (e.key === '/' && !typing && !modalOpen) {
+  if (e.key === '/' && !typing && !modalOpen && !$('#settingsDialog').classList.contains('open') && !e.metaKey && !e.ctrlKey && !e.altKey) {
     e.preventDefault(); $('#q').focus();
   }
   if (e.key === 'Escape') {
     if ($('#settingsDialog').classList.contains('open')) closeSettings();
     else if (modalOpen && mode === 'edit' && currentId) setMode('view');
     else if (modalOpen) closeModal();
+    else $('#exportMenu').open = false;
   }
   if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && modalOpen && mode === 'edit') {
     e.preventDefault(); save().catch((err) => toast('Save failed: ' + err.message));
   }
 });
 
-load().catch((e) => toast('Load failed: ' + e.message));
+function reportLoadError(error) {
+  $('#grid').setAttribute('aria-busy', 'false');
+  $('#grid').innerHTML = `<div class="empty"><h2>Let’s reconnect to your ideas.</h2><p>${esc(error.message)}</p><button class="btn" id="btnRetry">Try again</button></div>`;
+  $('#btnRetry').addEventListener('click', () => load().catch(reportLoadError));
+  toast('Load failed: ' + error.message);
+}
+// Native buttons in dialogs remain reachable without tabbing into the page behind them.
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Tab') return;
+  const dialog = $('#settingsDialog').classList.contains('open') ? $('#settingsDialog') : $('#modal').classList.contains('open') ? $('#modal') : null;
+  if (!dialog) return;
+  const focusable = [...dialog.querySelectorAll('button, input, textarea, select, a[href]')].filter((el) => !el.disabled && el.getClientRects().length);
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+document.addEventListener('click', (e) => {
+  if (!$('#exportMenu').contains(e.target)) $('#exportMenu').open = false;
+});
+load().catch(reportLoadError);
 </script>
 </body>
 </html>
