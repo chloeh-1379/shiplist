@@ -16,7 +16,7 @@ Give it a place to start, keep the next step in sight, and watch it become somet
 ## From “what if” to “it’s live”
 
 - **Catch an idea before it disappears.** Start with just a title. Add a short pitch, notes, links, and a few tags whenever you’re ready.
-- **See what you’re making.** Browse your ideas as cards, filter by progress, or search across titles, notes, and tags. Star the ones you want to prioritize.
+- **See what you’re making.** Browse your ideas as cards, filter by progress, or search across titles, notes, and tags. Set a priority from 0 to 5 in the editor; cards show it as stars.
 - **Give each project a next step.** Open an idea to keep its plan, useful links, and progress updates together. Notes support headings, lists, and other Markdown formatting.
 - **Keep a record of what you ship.** Move from **Idea → Planned → Building**, then mark a project **Shipped**, **Released**, or **Sold**. Add the repo, website, or store link so you can find it again.
 - **Make room for a change of plan.** Use **Parked** for “not right now” and **Stopped** for projects you’ve decided to end. The notes and history stay with them.
@@ -40,6 +40,10 @@ On macOS, you can also double-click **start.command** in the downloaded project 
 ## Make it yours
 
 **Start small.** A name is enough. Choose where you’d like to ship — an app, website, GitHub repo, command-line tool, library, or something else. Fill in the details as the idea takes shape.
+
+**Update a project’s status.** Open its card, choose **Edit idea**, then select **Status** and save. All eight statuses are available here and in **New idea**. Use **Shipped** when the code is published, **Released** when it is available to users, and **Sold** when the project has been sold.
+
+The home page always shows **All ideas**, **Ideas**, **Planned**, **Building**, and **Shipped** filters. **Released**, **Sold**, **Parked**, and **Stopped** appear when at least one project has that status. These are filters for existing projects; change a project’s status in its editor.
 
 **Pick a folder.** Open **Settings** to see or change where your ideas are saved. The default is `~/ShipList/ideas.json`. Back up that folder like any other important file. If you choose a folder with no existing ideas file, ShipList copies your current ideas there.
 
