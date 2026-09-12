@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -279,19 +279,19 @@
     <div class="logo"><span class="logo-badge">🚢</span> ShipList</div>
     <div class="search">
       <span>🔍</span>
-      <input id="q" placeholder="搜索 ideas… ( / )" />
+      <input id="q" placeholder="Search ideas… ( / )" />
     </div>
     <div class="spacer"></div>
-    <button class="btn" id="btnExportMd" title="导出 Markdown，方便喂给 agent">⬇︎ Markdown</button>
-    <button class="btn" id="btnExportJson" title="导出完整 JSON">⬇︎ JSON</button>
-    <button class="btn" id="btnSettings" title="设置">⚙️</button>
-    <button class="btn primary" id="btnNew">＋ 新 Idea</button>
+    <button class="btn" id="btnExportMd" title="Export Markdown digest (agent-friendly)">⬇︎ Markdown</button>
+    <button class="btn" id="btnExportJson" title="Export full JSON">⬇︎ JSON</button>
+    <button class="btn" id="btnSettings" title="Settings">⚙️</button>
+    <button class="btn primary" id="btnNew">＋ New Idea</button>
   </div>
 </header>
 
 <main>
   <div class="agent-banner">
-    🤖 <span>Agent 入口：<code>GET /api/ideas</code> · <code>POST /api/ideas</code> · 详见 <code>AGENTS.md</code> 与 <code>/api/export.md</code></span>
+    🤖 <span>Agent API: <code>GET /api/ideas</code> · <code>POST /api/ideas</code> · see <code>AGENTS.md</code> and <code>/api/export.md</code></span>
   </div>
 
   <div class="stats" id="stats"></div>
@@ -304,10 +304,10 @@
 <div class="modal" id="modal">
   <div class="modal-head">
     <div class="modal-head-inner">
-      <button class="btn ghost" id="btnClose">← 返回</button>
+      <button class="btn ghost" id="btnClose">← Back</button>
       <span class="crumb" id="crumb">Idea</span>
       <div class="spacer"></div>
-      <button class="btn" id="btnEditToggle">✏️ 编辑</button>
+      <button class="btn" id="btnEditToggle">✏️ Edit</button>
     </div>
   </div>
   <div class="modal-scroll">
@@ -321,21 +321,21 @@
         <p class="v-summary" id="vSummary"></p>
 
         <div id="vDescWrap">
-          <div class="v-section-label">详细描述</div>
+          <div class="v-section-label">Description</div>
           <div class="md" id="vDesc"></div>
         </div>
 
         <div id="vLinksWrap">
-          <div class="v-section-label">链接</div>
+          <div class="v-section-label">Links</div>
           <div class="v-links" id="vLinks"></div>
         </div>
 
         <div>
-          <div class="v-section-label">进展日志</div>
+          <div class="v-section-label">Activity Log</div>
           <div class="log-list" id="vLog"></div>
           <div class="log-add">
-            <input id="fLogText" placeholder="记录一条进展…" />
-            <button class="btn" id="btnAddLog">记录</button>
+            <input id="fLogText" placeholder="Log an update…" />
+            <button class="btn" id="btnAddLog">Log</button>
           </div>
         </div>
       </div>
@@ -344,16 +344,16 @@
       <div id="editMode" style="display:none">
         <div class="edit-form">
           <div class="field">
-            <label>标题 *</label>
-            <input id="fTitle" class="title-input" placeholder="一句话说清这个 idea" />
+            <label>Title *</label>
+            <input id="fTitle" class="title-input" placeholder="One line that captures the idea" />
           </div>
           <div class="field">
-            <label>简介</label>
-            <textarea id="fSummary" placeholder="它解决什么问题？给谁用？"></textarea>
+            <label>Summary</label>
+            <textarea id="fSummary" placeholder="What problem does it solve? Who is it for?"></textarea>
           </div>
           <div class="row">
             <div class="field">
-              <label>状态</label>
+              <label>Status</label>
               <select id="fStatus">
                 <option value="idea">💡 Idea</option>
                 <option value="planned">🗓️ Planned</option>
@@ -366,7 +366,7 @@
               </select>
             </div>
             <div class="field">
-              <label>Ship 到哪里</label>
+              <label>Ship to</label>
               <select id="fTarget">
                 <option value="github">GitHub</option>
                 <option value="app">App (mobile/desktop)</option>
@@ -377,29 +377,29 @@
               </select>
             </div>
             <div class="field">
-              <label>优先级 (0–5)</label>
+              <label>Priority (0–5)</label>
               <input id="fPriority" type="number" min="0" max="5" value="0" />
             </div>
           </div>
           <div class="field">
-            <label>标签（逗号分隔）</label>
+            <label>Tags (comma-separated)</label>
             <input id="fTags" placeholder="ai, ios, tool" />
           </div>
           <div class="field">
-            <label>详细描述（Markdown）</label>
-            <textarea id="fDesc" class="desc" placeholder="## 背景&#10;&#10;## MVP 范围&#10;&#10;## 技术选型&#10;&#10;## 下一步"></textarea>
-            <div class="hint">支持 Markdown：# 标题、**加粗**、`代码`、- 列表、&gt; 引用、[链接](url)、``` 代码块</div>
+            <label>Description (Markdown)</label>
+            <textarea id="fDesc" class="desc" placeholder="## Context&#10;&#10;## MVP scope&#10;&#10;## Tech stack&#10;&#10;## Next steps"></textarea>
+            <div class="hint">Markdown supported: # headings, **bold**, `code`, - lists, &gt; quotes, [links](url), ``` code blocks</div>
           </div>
           <div class="field">
-            <label>链接</label>
+            <label>Links</label>
             <div class="links-list" id="linksList"></div>
-            <button class="btn ghost" id="btnAddLink" style="margin-top:8px">＋ 添加链接</button>
+            <button class="btn ghost" id="btnAddLink" style="margin-top:8px">＋ Add link</button>
           </div>
           <div class="edit-actions">
-            <button class="btn danger" id="btnDelete" style="display:none">删除</button>
+            <button class="btn danger" id="btnDelete" style="display:none">Delete</button>
             <div class="spacer"></div>
-            <button class="btn" id="btnCancelEdit">取消</button>
-            <button class="btn primary" id="btnSave">保存 (⌘↵)</button>
+            <button class="btn" id="btnCancelEdit">Cancel</button>
+            <button class="btn primary" id="btnSave">Save (⌘↵)</button>
           </div>
         </div>
       </div>
@@ -411,21 +411,22 @@
 <!-- settings dialog -->
 <div class="overlay" id="settingsOverlay"></div>
 <div class="settings-dialog" id="settingsDialog">
-  <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">⚙️ 设置</h3>
+  <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">⚙️ Settings</h3>
   <div class="field">
-    <label>Workspace（idea 数据存放目录）</label>
+    <label>Workspace (where your ideas live)</label>
     <input id="fDataDir" placeholder="~/ShipList" />
     <div class="hint">
-      ideas 保存在该目录下的 <code>ideas.json</code>，与 ShipList 代码完全分离。
-      支持 <code>~</code> 开头的路径；切换时如果新目录为空会自动复制现有数据。
+      Ideas are stored as <code>ideas.json</code> in this folder, fully separate from the
+      ShipList code. Paths starting with <code>~</code> are supported; if the new folder
+      is empty, your existing ideas are copied over automatically.
     </div>
   </div>
   <div style="font-size:12px;color:var(--text-3);margin-top:12px">
-    当前数据文件：<code id="curDataFile" style="word-break:break-all"></code>
+    Active data file: <code id="curDataFile" style="word-break:break-all"></code>
   </div>
   <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px">
-    <button class="btn" id="btnSettingsCancel">取消</button>
-    <button class="btn primary" id="btnSettingsSave">保存</button>
+    <button class="btn" id="btnSettingsCancel">Cancel</button>
+    <button class="btn primary" id="btnSettingsSave">Save</button>
   </div>
 </div>
 
@@ -586,13 +587,13 @@ function render() {
   const counts = {};
   for (const i of ideas) counts[i.status] = (counts[i.status] || 0) + 1;
   $('#stats').innerHTML =
-    `<div class="stat"><div class="num">${ideas.length}</div><div class="lbl">全部 Ideas</div></div>` +
+    `<div class="stat"><div class="num">${ideas.length}</div><div class="lbl">All Ideas</div></div>` +
     ['building', 'shipped', 'released'].map((s) =>
       `<div class="stat"><div class="num">${counts[s] || 0}</div><div class="lbl">${STATUS_META[s].label}</div></div>`
     ).join('');
 
   $('#filters').innerHTML =
-    `<button class="chip ${activeFilter === 'all' ? 'active' : ''}" data-f="all">全部</button>` +
+    `<button class="chip ${activeFilter === 'all' ? 'active' : ''}" data-f="all">All</button>` +
     Object.entries(STATUS_META).map(([k, m]) =>
       `<button class="chip ${activeFilter === k ? 'active' : ''}" data-f="${k}">${m.label}${counts[k] ? ` · ${counts[k]}` : ''}</button>`
     ).join('');
@@ -607,7 +608,7 @@ function render() {
   if (!list.length) {
     $('#grid').innerHTML = `<div class="empty" style="grid-column:1/-1">
       <div class="big">🌱</div>
-      <div>${ideas.length ? '没有匹配的 idea' : '还没有 idea，点右上角「＋ 新 Idea」种下第一个吧'}</div>
+      <div>${ideas.length ? 'No ideas match this filter' : 'No ideas yet — hit "＋ New Idea" to plant your first one'}</div>
     </div>`;
     return;
   }
@@ -626,7 +627,7 @@ function render() {
         ${(i.tags || []).map((t) => `<span class="tag">#${esc(t)}</span>`).join('')}
       </div>
       <div class="foot">
-        <span>${(i.log || []).length} 条日志 · ${(i.links || []).length} 个链接</span>
+        <span>${(i.log || []).length} logs · ${(i.links || []).length} links</span>
         <span>${fmtDate(i.updatedAt)}</span>
       </div>
     </div>`;
@@ -644,7 +645,7 @@ function setMode(next) {
   $('#viewMode').style.display = next === 'view' ? '' : 'none';
   $('#editMode').style.display = next === 'edit' ? '' : 'none';
   $('#btnEditToggle').style.display = next === 'view' ? '' : 'none';
-  $('#crumb').textContent = next === 'edit' ? (currentId ? '编辑 Idea' : '新 Idea') : 'Idea';
+  $('#crumb').textContent = next === 'edit' ? (currentId ? 'Edit Idea' : 'New Idea') : 'Idea';
   if (next === 'edit') setTimeout(() => $('#fTitle').focus(), 200);
 }
 
@@ -657,7 +658,7 @@ function renderView(idea) {
     (idea.priority ? `<span class="prio">${'★'.repeat(idea.priority)}</span>` : '') +
     (idea.tags || []).map((t) => `<span class="tag">#${esc(t)}</span>`).join('');
   $('#vDates').textContent =
-    `创建于 ${fmtDate(idea.createdAt)} · 更新于 ${fmtDate(idea.updatedAt)}` +
+    `Created ${fmtDate(idea.createdAt)} · Updated ${fmtDate(idea.updatedAt)}` +
     (idea.shippedAt ? ` · 🚢 ${fmtDate(idea.shippedAt)}` : '');
   $('#vSummary').textContent = idea.summary || '';
   $('#vSummary').style.display = idea.summary ? '' : 'none';
@@ -665,7 +666,7 @@ function renderView(idea) {
   $('#vDescWrap').style.display = '';
   $('#vDesc').innerHTML = idea.description && idea.description.trim()
     ? renderMarkdown(idea.description)
-    : '<div class="md-placeholder">暂无详细描述，点右上角「✏️ 编辑」补充</div>';
+    : '<div class="md-placeholder">No description yet — hit "✏️ Edit" to add one</div>';
 
   const links = idea.links || [];
   $('#vLinksWrap').style.display = links.length ? '' : 'none';
@@ -681,7 +682,7 @@ function renderView(idea) {
         <time>${new Date(e.at).toLocaleString()}</time>
         <div>${e.by ? `<span class="by">${esc(e.by)}</span> · ` : ''}${esc(e.text)}</div>
       </div>`).join('')
-    : '<div class="log-entry" style="color:var(--text-3)">暂无日志，在下面记录第一条进展吧</div>';
+    : '<div class="log-entry" style="color:var(--text-3)">No activity yet — log the first update below</div>';
 }
 
 function linkRow(l = { label: '', url: '' }) {
@@ -689,7 +690,7 @@ function linkRow(l = { label: '', url: '' }) {
   row.className = 'link-row';
   row.innerHTML = `<input placeholder="label" value="${esc(l.label)}">
                    <input placeholder="https://…" value="${esc(l.url)}">
-                   <button class="icon-btn" title="移除">✕</button>`;
+                   <button class="icon-btn" title="Remove">✕</button>`;
   row.querySelector('.icon-btn').addEventListener('click', () => row.remove());
   $('#linksList').appendChild(row);
 }
@@ -747,15 +748,15 @@ async function save() {
     tags: $('#fTags').value.split(',').map((t) => t.trim()).filter(Boolean),
     links,
   };
-  if (!body.title) { toast('标题不能为空'); $('#fTitle').focus(); return; }
+  if (!body.title) { toast('Title is required'); $('#fTitle').focus(); return; }
 
   let saved;
   if (currentId) {
     saved = await api(`/api/ideas/${currentId}`, { method: 'PATCH', body: JSON.stringify(body) });
-    toast('已保存 ✓');
+    toast('Saved ✓');
   } else {
     saved = await api('/api/ideas', { method: 'POST', body: JSON.stringify(body) });
-    toast('Idea 已创建 🌱');
+    toast('Idea created 🌱');
   }
   ideas = ideas.filter((i) => i.id !== saved.id);
   ideas.unshift(saved);
@@ -776,12 +777,12 @@ $('#btnEditToggle').addEventListener('click', () => {
 $('#btnCancelEdit').addEventListener('click', () => {
   if (currentId) setMode('view'); else closeModal();
 });
-$('#btnSave').addEventListener('click', () => save().catch((e) => toast('保存失败：' + e.message)));
+$('#btnSave').addEventListener('click', () => save().catch((e) => toast('Save failed: ' + e.message)));
 $('#btnAddLink').addEventListener('click', () => linkRow());
 $('#btnDelete').addEventListener('click', async () => {
-  if (!currentId || !confirm('确定删除这个 idea 吗？')) return;
+  if (!currentId || !confirm('Delete this idea for good?')) return;
   await api(`/api/ideas/${currentId}`, { method: 'DELETE' });
-  toast('已删除');
+  toast('Deleted');
   closeModal();
   load();
 });
@@ -794,7 +795,7 @@ $('#btnAddLog').addEventListener('click', async () => {
   ideas = ideas.map((i) => (i.id === currentId ? fresh : i));
   renderView(fresh);
   render();
-  toast('日志已记录 ✓');
+  toast('Logged ✓');
 });
 $('#fLogText').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); $('#btnAddLog').click(); }
@@ -822,15 +823,15 @@ $('#btnSettingsCancel').addEventListener('click', closeSettings);
 $('#settingsOverlay').addEventListener('click', closeSettings);
 $('#btnSettingsSave').addEventListener('click', async () => {
   const dataDir = $('#fDataDir').value.trim();
-  if (!dataDir) { toast('目录不能为空'); return; }
+  if (!dataDir) { toast('Path cannot be empty'); return; }
   try {
     const res = await api('/api/config', { method: 'POST', body: JSON.stringify({ dataDir }) });
-    toast(`Workspace 已切换 ✓${res.migrated ? '（已复制现有 ideas）' : ''}`);
+    toast(`Workspace switched ✓${res.migrated ? ' (existing ideas copied)' : ''}`);
     $('#curDataFile').textContent = res.dataFile;
     closeSettings();
     load();
   } catch (e) {
-    toast('切换失败：' + e.message);
+    toast('Switch failed: ' + e.message);
   }
 });
 
@@ -846,11 +847,11 @@ document.addEventListener('keydown', (e) => {
     else if (modalOpen) closeModal();
   }
   if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && modalOpen && mode === 'edit') {
-    e.preventDefault(); save().catch((err) => toast('保存失败：' + err.message));
+    e.preventDefault(); save().catch((err) => toast('Save failed: ' + err.message));
   }
 });
 
-load().catch((e) => toast('加载失败：' + e.message));
+load().catch((e) => toast('Load failed: ' + e.message));
 </script>
 </body>
 </html>
