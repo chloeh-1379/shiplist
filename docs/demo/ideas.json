@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "ideas": [
+    {
+      "id": "a246174a-90e3-47dc-86b2-1797ab7b4e86",
+      "title": "Pocket Planet",
+      "summary": "A tiny planet that grows a new forest every time you finish a focus session.",
+      "description": "## The idea\n\nA tiny planet that grows a new forest every time you finish a focus session.\n\n## Next step\n\nBuild a small prototype and share it with a few friends.",
+      "status": "building",
+      "shipTarget": "app",
+      "tags": [
+        "focus",
+        "playful"
+      ],
+      "links": [],
+      "priority": 0,
+      "createdAt": "2026-09-12T08:00:00.000Z",
+      "updatedAt": "2026-09-12T08:00:00.000Z",
+      "shippedAt": null,
+      "log": [
+        {
+          "at": "2026-09-12T08:00:00.000Z",
+          "text": "Fictional example for the ShipList README screenshot.",
+          "by": "codex"
+        }
+      ]
+    },
+    {
+      "id": "d8c10007-2782-4685-8943-ed24d6f0beb3",
+      "title": "Paper Trail",
+      "summary": "Turn a folder of research papers into a searchable reading notebook.",
+      "description": "## The idea\n\nTurn a folder of research papers into a searchable reading notebook.\n\n## Next step\n\nBuild a small prototype and share it with a few friends.",
+      "status": "idea",
+      "shipTarget": "library",
+      "tags": [
+        "research",
+        "knowledge"
+      ],
+      "links": [],
+      "priority": 0,
+      "createdAt": "2026-09-12T08:00:00.000Z",
+      "updatedAt": "2026-09-12T08:00:00.000Z",
+      "shippedAt": null,
+      "log": [
+        {
+          "at": "2026-09-12T08:00:00.000Z",
+          "text": "Fictional example for the ShipList README screenshot.",
+          "by": "codex"
+        }
+      ]
+    },
+    {
+      "id": "084405a2-6e68-40bb-accc-fe7ccf12c5c1",
+      "title": "API Scout",
+      "summary": "Catch breaking API changes before they reach your customers.",
+      "description": "## The idea\n\nCatch breaking API changes before they reach your customers.\n\n## Next step\n\nBuild a small prototype and share it with a few friends.",
+      "status": "shipped",
+      "shipTarget": "web",
+      "tags": [
+        "devtools",
+        "monitoring"
+      ],
+      "links": [],
+      "priority": 0,
+      "createdAt": "2026-09-12T08:00:00.000Z",
+      "updatedAt": "2026-09-12T08:00:00.000Z",
+      "shippedAt": "2026-09-12T08:00:00.000Z",
+      "log": [
+        {
+          "at": "2026-09-12T08:00:00.000Z",
+          "text": "Fictional example for the ShipList README screenshot.",
+          "by": "codex"
+        }
+      ]
+    },
+    {
+      "id": "1339488c-eedc-4691-8905-022e212fe546",
+      "title": "Dinner Roulette",
+      "summary": "Spin your saved recipes into a weekly menu. Less deciding, more cooking.",
+      "description": "## The idea\n\nSpin your saved recipes into a weekly menu. Less deciding, more cooking.\n\n## Next step\n\nBuild a small prototype and share it with a few friends.",
+      "status": "planned",
+      "shipTarget": "app",
+      "tags": [
+        "food",
+        "everyday"
+      ],
+      "links": [],
+      "priority": 0,
+      "createdAt": "2026-09-12T08:00:00.000Z",
+      "updatedAt": "2026-09-12T08:00:00.000Z",
+      "shippedAt": null,
+      "log": [
+        {
+          "at": "2026-09-12T08:00:00.000Z",
+          "text": "Fictional example for the ShipList README screenshot.",
+          "by": "codex"
+        }
+      ]
+    },
+    {
+      "id": "441ad463-6d4b-4f36-af54-ba9c789f467c",
+      "title": "Tiny Wins",
+      "summary": "A quiet command-line journal for the one thing you made progress on today.",
+      "description": "## The idea\n\nA quiet command-line journal for the one thing you made progress on today.\n\n## Next step\n\nBuild a small prototype and share it with a few friends.",
+      "status": "idea",
+      "shipTarget": "cli",
+      "tags": [
+        "journal",
+        "mindfulness"
+      ],
+      "links": [],
+      "priority": 0,
+      "createdAt": "2026-09-12T08:00:00.000Z",
+      "updatedAt": "2026-09-12T08:00:00.000Z",
+      "shippedAt": null,
+      "log": [
+        {
+          "at": "2026-09-12T08:00:00.000Z",
+          "text": "Fictional example for the ShipList README screenshot.",
+          "by": "codex"
+        }
+      ]
+    }
+  ]
+}
